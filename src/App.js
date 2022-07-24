@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ToDoLists from './ToDoLists';
 
 const App = () => {
 const[inputList, setInputList] = useState("Apple");
@@ -10,6 +11,7 @@ const listOfItems = () =>{
   setItems((oldItems) => {
     return[...oldItems, inputList];
   });
+  setInputList("");
 }
   return (
     <>
@@ -18,12 +20,14 @@ const listOfItems = () =>{
         <br />
         <h1>Todo List</h1>
         <br />
-        <input type="text"  placeholder="Add a item" onChange={itemEvent}/> 
+        <input type="text"  placeholder="Add a item" 
+        value = {inputList}
+        onChange={itemEvent}/> 
         <button onClick={listOfItems}> + </button>
 
         <ol>
         {items.map((itemvalue) => {
-            return <li>{itemvalue}</li>;
+            return <ToDoLists text={itemvalue}/>
           })
         }
           
